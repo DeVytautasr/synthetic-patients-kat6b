@@ -8,12 +8,7 @@
 *.zip
 *.bak
 
-# Large genome/sim files kept outside git
+# Large local genome/simulation files (keep local, do not push to GitHub)
 ref/*.fa
-sim/*.simseq.genome.fa
-sim/*.fa
-
-# Local-only large genome/simseq files
-big_files_backup/
-ref/*.fa
-sim/*.simseq.genome.fa
+sim/control/*.simseq.genome.fa
+sim/patients/*.simseq.genome.fa
