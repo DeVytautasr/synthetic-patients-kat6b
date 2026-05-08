@@ -27,6 +27,12 @@ Repository structure
     - synthetic_patient1_kat6b_lof_plus_benign.vcf
       VCF defining the same KAT6B LoF variant for Patient1 together with
       the benign chr10 background variant.
+    - synthetic_patient2_kat6b_lof_only.vcf
+      VCF defining a Patient2 KAT6B frameshift LoF variant without extra
+      benign chr10 variation.
+    - synthetic_patient2_kat6b_lof_plus_benign.vcf
+      VCF defining the same Patient2 KAT6B frameshift LoF variant together
+      with the benign chr10 background variant.
 
 - sim/
   - control/
@@ -43,8 +49,17 @@ Repository structure
     - patient1_kat6b_lof_plus_benign.simseq.genome.fa
     - patient1_kat6b_lof_plus_benign.refseq2simseq.SNP.vcf
     - patient1_kat6b_lof_plus_benign.refseq2simseq.map.txt
-      simuG outputs for Patient1 with the same KAT6B LoF variant plus the
+      simuG outputs for Patient1 with the KAT6B LoF variant plus the
       benign chr10 background variant.
+    - patient2_kat6b_lof_only.simseq.genome.fa
+    - patient2_kat6b_lof_only.refseq2simseq.SNP.vcf
+    - patient2_kat6b_lof_only.refseq2simseq.map.txt
+      simuG outputs for Patient2 with a KAT6B frameshift LoF variant only.
+    - patient2_kat6b_lof_plus_benign.simseq.genome.fa
+    - patient2_kat6b_lof_plus_benign.refseq2simseq.SNP.vcf
+    - patient2_kat6b_lof_plus_benign.refseq2simseq.map.txt
+      simuG outputs for Patient2 with the KAT6B frameshift LoF variant plus
+      the benign chr10 background variant.
 
 - simuG/
   Local copy of the simuG tool (Perl scripts and example data) used to
@@ -69,22 +84,25 @@ Patients and controls
     simulated patient genomes and corresponding refseq2simseq mappings.
 
 - Patient2:
-  - KAT6B frameshift LoF variant on chr10 (c.3998dup-like, chr10:75028821 C>CC,
-    p.Ser1334fs) plus the same benign chr10 background variant as Patient1.
-  - VCF: vcf/patients/synthetic_patient2_kat6b_lof_plus_benign.vcf
-  - simuG outputs: sim/patients/patient2_kat6b_lof_plus_benign.*
+  - Patient2 carries a different KAT6B frameshift LoF variant on chr10
+    (c.3998dup-like, chr10:75028821 C>CC, p.Ser1334fs), with two VCF
+    configurations:
+    - KAT6B frameshift LoF only on chr10.
+    - KAT6B frameshift LoF on chr10 plus the benign chr10 background variant.
+  - simuG is used to apply these VCFs on top of ref/chr10.fa, producing
+    simulated patient genomes and corresponding refseq2simseq mappings.
 
 Current status
 --------------
-- simuG is successfully installed and running for SNP simulations on
+- simuG is successfully installed and running for SNP/INDEL simulations on
   hg38 chr10 with the provided VCF files.
-- Synthetic chr10 genomes and mapping files for Patient1 and the control
-  have been generated and organised into ref/, vcf/, sim/, and simuG/
+- Synthetic chr10 genomes and mapping files for Patient1, Patient2, and the
+  control have been generated and organised into ref/, vcf/, sim/, and simuG/
   directories.
+- The repository implements a clean 2x2 design: two patients, each with a
+  lof_only and a lof_plus_benign VCF configuration, plus a wild-type control.
 - The repository is set up as a small, reproducible test system for
   KAT6B-related variant scenarios on chr10.
-- Patient2 has been successfully generated with a different KAT6B LoF frameshift
-  variant (chr10:75028821 C>CC) on the same chr10 benign background as Patient1.
 
 Large files and Git/GitHub notes
 --------------------------------
