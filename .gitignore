@@ -12,3 +12,4 @@
 ref/*.fa
 sim/control/*.simseq.genome.fa
 sim/patients/*.simseq.genome.fa
+.venv/
