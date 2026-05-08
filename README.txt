@@ -3,57 +3,90 @@ synthetic-patients-kat6b
 
 Overview
 --------
-Synthetic chr10 genomes and variant sets for KAT6B-related in silico patients and controls,
-generated with simuG on top of hg38 chr10.
+This repository contains synthetic chr10 genomes and variant sets for
+KAT6B-related in silico patients and controls. The genomes are generated
+with simuG on top of a hg38 chr10 reference. The goal is to have a small,
+well-controlled testbed for KAT6B loss-of-function (LoF) variants and
+benign background variation on chr10.
 
-Reference
----------
-- ref/chr10.fa – hg38 chr10 reference (length ~133,797,422 bp).
+Repository structure
+--------------------
+- ref/
+  - chr10.fa
+    hg38 chr10 reference sequence used as the baseline genome for all
+    simulations.
 
-Patients
---------
-Patient1 (KAT6B LoF + benign chr10 variant)
-- VCF inputs:
-  - vcf/patients/synthetic_patient1_chr10_only.vcf
-  - vcf/patients/synthetic_patient1_chr10_all.vcf
-- simuG outputs:
-  - sim/patients/kat6b_patient1_chr10_only.simseq.genome.fa
-  - sim/patients/kat6b_patient1_chr10_only.refseq2simseq.{SNP.vcf,map.txt}
-  - sim/patients/kat6b_patient1_chr10_all.simseq.genome.fa
-  - sim/patients/kat6b_patient1_chr10_all.refseq2simseq.{SNP.vcf,map.txt}
+- vcf/
+  - control/
+    - synthetic_control_chr10_benign_only.vcf
+      VCF defining the benign chr10 background variant for the control.
+  - patients/
+    - synthetic_patient1_kat6b_lof_only.vcf
+      VCF defining a Patient1 KAT6B LoF variant on chr10 without extra
+      benign chr10 variation.
+    - synthetic_patient1_kat6b_lof_plus_benign.vcf
+      VCF defining the same KAT6B LoF variant for Patient1 together with
+      the benign chr10 background variant.
 
-Controls
---------
-Control chr10 (wild-type reference + benign chr10 variant definition)
-- Genome:
-  - ref/chr10.fa (used as wild-type control sequence)
-- VCF + mapping:
-  - vcf/control/synthetic_control_chr10_all.vcf
-  - sim/control/control_chr10_all.refseq2simseq.{SNP.vcf,map.txt}
-- Note:
-  - For now, control simseq.genome.fa is not generated; the reference chr10.fa
-    is used directly as the control genome. This is enough for variant-level
-    comparisons and can be extended later if needed.
+- sim/
+  - control/
+    - control_chr10_benign_only.refseq2simseq.SNP.vcf
+    - control_chr10_benign_only.refseq2simseq.map.txt
+      simuG mapping outputs describing how the benign chr10 variant is
+      applied on top of the reference. A full simulated control genome
+      FASTA can be generated later if needed.
+  - patients/
+    - patient1_kat6b_lof_only.simseq.genome.fa
+    - patient1_kat6b_lof_only.refseq2simseq.SNP.vcf
+    - patient1_kat6b_lof_only.refseq2simseq.map.txt
+      simuG outputs for Patient1 with a KAT6B LoF variant on chr10 only.
+    - patient1_kat6b_lof_plus_benign.simseq.genome.fa
+    - patient1_kat6b_lof_plus_benign.refseq2simseq.SNP.vcf
+    - patient1_kat6b_lof_plus_benign.refseq2simseq.map.txt
+      simuG outputs for Patient1 with the same KAT6B LoF variant plus the
+      benign chr10 background variant.
 
-What worked
------------
-- Successfully installed and ran simuG for SNP/INDEL simulations on hg38 chr10.
-- Generated synthetic chr10 genomes for Patient1 with:
-  - KAT6B nonsense LoF on chr10 (10q22) plus a benign SNP.
-- Verified that simseq chr10 lengths match hg38 chr10 (133,797,422 bp).
-- Set up a clean project structure (ref/vcf/sim/simuG), initialized git,
-  and pushed the code + configs to GitHub (large FASTA/simseq files kept local).
+- simuG/
+  Local copy of the simuG tool (Perl scripts and example data) used to
+  generate synthetic variants and genomes on chr10.
 
-What did not fully work yet / open items
-----------------------------------------
-- Control simseq.genome.fa:
-  - simuG successfully produced refseq2simseq mapping and SNP VCF for the control,
-    but currently does not output a simseq.genome.fa file in this configuration.
-  - For now, the control genome is represented by ref/chr10.fa (wild-type),
-    plus the control VCF/mapping files.
-- Next steps:
-  - Add Patient2 with a different KAT6B LoF variant on chr10.
-  - Optionally extend to whole-genome simulations (full GRCh38).
-  - Later: simulate reads from patient/control genomes and run a small variant-calling pipeline.
+Patients and controls
+---------------------
+- Control:
+  - Uses ref/chr10.fa as the wild-type baseline sequence.
+  - The benign chr10 background variant is defined in
+    vcf/control/synthetic_control_chr10_benign_only.vcf and projected onto
+    the reference via the refseq2simseq mapping files in sim/control/.
+  - A dedicated control simseq.genome.fa is not strictly required for
+    variant-level comparisons and can be generated later if needed.
 
-big_files_backup/ – local-only large FASTA/simseq files (not tracked in git/GitHub due to the 100 MB file size limit).
+- Patient1:
+  - Patient1 carries a KAT6B loss-of-function variant on chr10 (10q22),
+    with two VCF configurations:
+    - KAT6B LoF only on chr10.
+    - KAT6B LoF on chr10 plus the benign chr10 background variant.
+  - simuG is used to apply these VCFs on top of ref/chr10.fa, producing
+    simulated patient genomes and corresponding refseq2simseq mappings.
+
+Current status
+--------------
+- simuG is successfully installed and running for SNP simulations on
+  hg38 chr10 with the provided VCF files.
+- Synthetic chr10 genomes and mapping files for Patient1 and the control
+  have been generated and organised into ref/, vcf/, sim/, and simuG/
+  directories.
+- The repository is set up as a small, reproducible test system for
+  KAT6B-related variant scenarios on chr10.
+
+Large files and Git/GitHub notes
+--------------------------------
+- Large FASTA and simulated genome FASTA files (ref/*.fa and
+  sim/*/*.simseq.genome.fa) are kept locally and excluded from version
+  control using .gitignore so they are not pushed to GitHub.
+- This keeps the repository under GitHub's 100 MB per-file size limit for
+  regular Git repositories and avoids pushing unnecessary large binary
+  files.
+- The Git history has been cleaned so that no over-sized files remain in
+  past commits. The current main branch on GitHub can be treated as a
+  clean baseline for further patient/control additions and downstream
+  analyses.
