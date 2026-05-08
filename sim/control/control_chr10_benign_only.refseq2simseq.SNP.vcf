@@ -1,0 +1,13 @@
+##fileformat=VCFv4.1
+##fileDate=Fri May  8 10:43:22 2026 (GMT time)
+##source=simuG.pl
+##INFO=<ID=variant_type,Number=1,Type=String,Description="The type of the introduced genomic variant">
+##INFO=<ID=variant_id,Number=1,Type=String,Description="The id of the introduced genomic variant">
+##INFO=<ID=ref_chr,Number=1,Type=String,Description="The reference genome based chromosome ID of the introduced genomic variant">
+##INFO=<ID=ref_start,Number=1,Type=String,Description="The reference genome based start coordinate of the introduced genomic variant">
+##INFO=<ID=ref_end,Number=1,Type=String,Description="The reference genome based end coordinate of the introduced genomic variant">
+##INFO=<ID=sim_chr,Number=1,Type=String,Description="The simulated genome based chromosome ID of the introduced genomic variant">
+##INFO=<ID=sim_start,Number=1,Type=String,Description="The simulated genome based start coordinate of the introduced genomic variant">
+##INFO=<ID=sim_end,Number=1,Type=String,Description="The simulated genome based end coordinate of the introduced genomic variant">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+chr10	101000000	.	G	A	.	.	variant_type=SNP;ref_chr=chr10;ref_start=101000000;ref_end=101000000;sim_chr=chr10;sim_start=101000000;sim_end=101000000

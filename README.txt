@@ -55,3 +55,5 @@ What did not fully work yet / open items
   - Add Patient2 with a different KAT6B LoF variant on chr10.
   - Optionally extend to whole-genome simulations (full GRCh38).
   - Later: simulate reads from patient/control genomes and run a small variant-calling pipeline.
+
+big_files_backup/ – local-only large FASTA/simseq files (not tracked in git/GitHub due to the 100 MB file size limit).

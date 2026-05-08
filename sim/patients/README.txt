@@ -1,7 +1,7 @@
 Patients simuG outputs
 ----------------------
-kat6b_patient1_chr10_only.*:
-- Synthetic chr10 genome with only KAT6B LoF.
+patient1_kat6b_lof_only.* :
+- Synthetic chr10 genome with only the KAT6B LoF variant.
 
-kat6b_patient1_chr10_all.*:
-- Synthetic chr10 genome with KAT6B LoF + benign chr10 SNP.
+patient1_kat6b_lof_plus_benign.* :
+- Synthetic chr10 genome with KAT6B LoF + a benign chr10 SNP.
