@@ -1,0 +1,4 @@
+##fileformat=VCFv4.2
+##source=synthetic_patients_kat6b_patient2
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+chr10	75028821	PATIENT2_KAT6B_LOF_FS	C	CC	100	PASS	GENE=KAT6B;EFFECT=lof_frameshift
