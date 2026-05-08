@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+*.swp
+*.swo
+
+# Archives / backups
+*.tar.gz
+*.zip
+*.bak
+
+# Large genome/sim files kept outside git
+ref/*.fa
+sim/*.simseq.genome.fa
+sim/*.fa

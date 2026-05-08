@@ -1,0 +1,6 @@
+##fileformat=VCFv4.2
+##INFO=<ID=GENE,Number=1,Type=String,Description="Gene symbol">
+##INFO=<ID=EFFECT,Number=1,Type=String,Description="Predicted functional effect">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	SAMPLE1
+chr10	74975481	KAT6B_LOF	C	A	100	PASS	GENE=KAT6B;EFFECT=nonsense_LOF	GT	0/1
